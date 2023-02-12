@@ -15,10 +15,12 @@ async function getQuote(url = '') {
 
 async function insertQuote() {
   const quoteElement = document.querySelector("#quote")
-  const currentQuote = await getQuote("https://api.paperquotes.com/apiv1/quotes/")
+  const currentQuote = await getQuote("https://api.paperquotes.com/apiv1/quotes/?tags=love&random=random&order=?")
   console.log(quoteElement)
   console.log(currentQuote)
-  quoteElement.textContent = currentQuote
+  console.log(currentQuote.results[0].quote)
+  console.log(currentQuote.results[0].Authorization)
+  quoteElement.textContent = currentQuote.results[0].quote
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
