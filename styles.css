@@ -1,19 +1,52 @@
 body {
+  background: #654ea3;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eaafc8, #654ea3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 0;
+  font-family: "dosis";
   margin: 0;
   padding: 0;
-  border: 0;
   outline: 0;
-  background-color: gray;
 }
 
 .main-container {
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 95vh;
+  width: 100vw;
+}
+
+.quote-container {
+  background: rgba( 255, 255, 255, 0.15 );
+  border-radius: 50px;
+  max-width: 500px;
+  max-height: 350px;
+  padding: 35px;
 }
 
 .quote {
-  color: blue;
+  color: #fff;
+  font-weight: 700;
+}
+
+.quote-author {
+  color: #fff;
+  display: flex;
+  justify-content: end;
+  font-weight: 400;
+}
+
+.footer {
+  height: 5vh;
+  padding: 0 20px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a::selection {
+  color: #fff;
 }

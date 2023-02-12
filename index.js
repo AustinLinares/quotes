@@ -15,12 +15,14 @@ async function getQuote(url = '') {
 
 async function insertQuote() {
   const quoteElement = document.querySelector("#quote")
+  const quoteAuthorElm = document.querySelector("#quote-author")
   const currentQuote = await getQuote("https://api.paperquotes.com/apiv1/quotes/?tags=love&random=random&order=?")
-  console.log(quoteElement)
-  console.log(currentQuote)
-  console.log(currentQuote.results[0].quote)
-  console.log(currentQuote.results[0].Authorization)
-  quoteElement.textContent = currentQuote.results[0].quote
+  if (currentQuote?.results[0]) {
+    quoteElement.textContent = "\"" + currentQuote.results[0].quote +"\""
+    quoteAuthorElm.textContent = currentQuote.results[0].author
+  } else {
+    quoteAuthorElm.textContent = "por alguna razón lo arruiné, prueba otra vez"
+  }
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
