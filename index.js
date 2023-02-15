@@ -13,10 +13,24 @@ async function getQuote(url = '') {
   return parsedResponse
 }
 
+function getRandomInt(max) {
+  return (Math.floor(Math.random() * max) + 1);
+}
+
+function increaseOffset(href) {
+  const url = new URL(href);
+  const currOffset = parseInt(url.searchParams.get("offset"));
+  url.searchParams.set("offset", currOffset + getRandomInt(25));
+  return url.href
+}
+
 async function insertQuote() {
   const quoteElement = document.querySelector("#quote")
   const quoteAuthorElm = document.querySelector("#quote-author")
-  const currentQuote = await getQuote("https://api.paperquotes.com/apiv1/quotes/?tags=love&random=random&order=?")
+  const url = localStorage.getItem("lastUrl") || `https://api.paperquotes.com/apiv1/quotes/?tags=love&random=random&order=&limit=1&offset=${getRandomInt(9)}`
+  const currentQuote = await getQuote(url)
+  localStorage.setItem("lastUrl", increaseOffset(currentQuote.next))
+  console.log(currentQuote)
   if (currentQuote?.results[0]) {
     quoteElement.textContent = "\"" + currentQuote.results[0].quote +"\""
     quoteAuthorElm.textContent = currentQuote.results[0].author
